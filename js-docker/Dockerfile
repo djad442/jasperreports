@@ -65,9 +65,10 @@ COPY scripts /
 # Copy Fonts Extension lib
 COPY assets/libs $CATALINA_HOME/webapps/jasperserver/WEB-INF/lib/
 
-RUN echo "nameserver 8.8.8.8" | tee /etc/resolv.conf > /dev/null && \
-    chmod +x /*.sh && \
-    /installPackagesForJasperserver-ce.sh > /dev/null && \
+#RUN echo "nameserver 172.17.0.4" | tee /etc/resolv.conf > /dev/null
+
+RUN chmod +x /*.sh
+RUN /installPackagesForJasperserver-ce.sh > /dev/null && \
 	echo "finished installing packages" && \
     rm -rf $CATALINA_HOME/webapps/ROOT && \
 	mkdir $CATALINA_HOME/webapps/ROOT && \
